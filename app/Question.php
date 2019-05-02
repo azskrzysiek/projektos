@@ -51,7 +51,35 @@ class Question extends Model
 
     public function acceptBestAnswer(Answer $answer)
     {
-        $this->best_answer_id = $answer->id;
-        $this->save();
+        if ($answer->id === $this->best_answer_id)
+        {
+             $this->best_answer_id = NULL;
+             $this->save();
+        }
+        else {
+            $this->best_answer_id = $answer->id;
+            $this->save();
+        }
+        
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    }
+
+    public function isFavorited()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->count() > 0;
+    }
+
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
+
+    public function getFavoritesCountAttribute()
+    {
+        return $this->favorites->count();
     }
 }
