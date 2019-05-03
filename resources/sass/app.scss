@@ -22,7 +22,8 @@
         font-size: 2em;
     }
 
-    .vote, .answer {
+    .vote,
+    .answer {
         width: 60px;
         height: 60px;
     }
@@ -31,10 +32,12 @@
         &.unanswered {
             border: none;
         }
+
         &.answered {
             border: 1px solid $color-green;
             color: $color-green;
         }
+
         &.answered-accepted {
             background: $color-green;
             color: $color-white;
@@ -57,7 +60,8 @@ form.form-delete {
     text-align: center;
     color: $gray-700;
 
-    span, a {
+    span,
+    a {
         display: block;
     }
 
@@ -75,12 +79,15 @@ form.form-delete {
         cursor: pointer;
         color: $gray-600;
 
-        &.off, &.off:hover {
+        &.off,
+        &.off:hover {
             color: $gray-500;
         }
 
         &.favorite {
-            &.favorited, &.favorited:hover {
+
+            &.favorited,
+            &.favorited:hover {
                 color: $warning;
             }
         }
