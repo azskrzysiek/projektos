@@ -10,7 +10,9 @@ class AnswersController extends Controller
 {
     
 
-   
+    // public function __construct() {
+    //     $this->middleware('auth', ['except' => ['index']]);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -78,6 +80,13 @@ class AnswersController extends Controller
         $this->authorize('delete', $answer);
 
         $answer->delete();
+
+        if (request()->expectsJson())
+        {
+            return response()->json([
+                'message' => "Your answer has been removed"
+            ]);
+        }
 
         return back()->with('success', "Your answer has been removed");
     }
