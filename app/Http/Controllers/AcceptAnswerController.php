@@ -10,7 +10,14 @@ class AcceptAnswerController extends Controller
     public function __invoke(Answer $answer)
     {
         $this->authorize('accept', $answer);
+
         $answer->question->acceptBestAnswer($answer);
+
+        if(request()->expectsJson()) {
+            return response()->json([
+                'message' => "Zaakceptowałeś to"
+            ]);
+        }
         return back();
     }
 }
