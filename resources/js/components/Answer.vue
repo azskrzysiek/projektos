@@ -31,6 +31,9 @@
 
 
 <script>
+import Vote from './Vote';
+import UserInfo from './UserInfo';
+
 export default {
     props: ['answer'],
 
@@ -44,6 +47,7 @@ export default {
             beforeEditCache: null
         }
     },
+     components: {Vote, UserInfo},
     methods: {
         edit () {
             this.beforeEditCache = this.body;
